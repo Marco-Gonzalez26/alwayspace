@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import Astronaut from '../assets/astronaut.svg'
 import { getApodImage } from 'scripts/getNasaAPOD'
-import ImageLayout from 'layouts/ImageLayout.astro'
+import ApodLayout from 'layouts/ApodLayout.astro'
 
-const { date, explanation, title, urlImg } = await getApodImage().then(
+const { date, explanation, title, urlImg, author } = await getApodImage().then(
   (res) => res
 )
 ---
@@ -23,16 +23,21 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
         <a>Astronomical photo of you date of birth</a>
       </div>
     </section>
-    <ImageLayout>
-      <div class='apod_div'>
-        <!-- <Card title={title} body={explanation} date={date} /> -->
+    <ApodLayout>
+      <a
+        href='https://apod.nasa.gov/apod/'
+        class='apod_div'
+        target='_blank'
+        rel='noreferrer'>
         <img src={urlImg} alt={title} />
         <div class='apod_div_content'>
           <h3>{title}</h3>
-          <p>{explanation}</p>
+          <h4>{author}</h4>
+          <small>{date}</small>
+          <p>{explanation.substring(0, 300)}...</p>
         </div>
-      </div>
-    </ImageLayout>
+      </a>
+    </ApodLayout>
   </main>
 </Layout>
 
@@ -44,7 +49,7 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
   }
 
   .apod_div {
-    max-width: 32rem;
+    max-width: 40rem;
     border-radius: 0.5rem;
     position: relative;
     overflow: hidden;
@@ -67,29 +72,30 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
     right: 0;
     left: 0;
     width: 95%;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
     padding: 1rem;
 
-    -webkit-box-shadow: -50px -50px 100px 50px rgba(0, 0, 0, .7) inset;
+    -webkit-box-shadow: -50px -50px 100px 50px rgba(0, 0, 0, 0.7) inset;
     transition: 1s ease all;
     opacity: 0;
   }
-  @media (min-width: 992px) {
-    .apod_div {
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-  }
   h1 {
-    font-size: 3.5rem;
+    font-size: 2rem;
     font-weight: 800;
     margin: 0;
     color: #fff;
     text-align: center;
   }
+
+  @media (min-width: 992px) {
+    h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+
   section {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,7 +107,8 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
     justify-content: center;
     align-items: center;
     border-top: solid #fff 1px;
-    padding-top: 2rem;
+    padding-top: 1rem;
+    text-align: center;
   }
   .nav_bar > a {
     margin-right: 0.75em;
@@ -128,7 +135,7 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
 
   .astronaut {
     animation: floating 3s ease-in-out infinite;
-    max-width: 30rem;
+    max-width: 25rem;
     border-radius: 0.5rem;
   }
 
@@ -142,30 +149,5 @@ const { date, explanation, title, urlImg } = await getApodImage().then(
     100% {
       transform: translate(0, -0px);
     }
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
   }
 </style>

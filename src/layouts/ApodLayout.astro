@@ -9,35 +9,21 @@
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
   </head>
-  <section class='image_section' id='apod'>
-    <h2 class='apod_title'>
+  <section class='apod_section' >
+    <h2 class='apod_title' id='apod'>
       <span class="text-gradient">Astronomy</span> photo of the day
     </h2>
     <slot />
   </section>
 
   <style is:global>
-    :root {
-      --accent: 124, 58, 237;
-      --accent-gradient: linear-gradient(
-        45deg,
-        rgb(var(--accent)),
-        #e45dff 40%,
-        white 60%
-      );
-      --gradient: linear-gradient(
-        180deg,
-        rgb(200, 200, 200, .5),
-        #3f3e3e98 40%,
-        rgba(0, 0, 0, 0.6) 60%
-      );
-    }
     html {
       font-family: system-ui, sans-serif;
     }
     .apod_title {
-      font-size: 3rem;
+      font-size: 2rem;
       color: #fff;
+      text-align: center;
     }
     .text-gradient {
       background-image: var(--accent-gradient);
@@ -46,18 +32,20 @@
       background-size: 400%;
       background-position: 0%;
     }
-    .image_section {
+    .apod_section {
       display: flex;
       flex-direction: column;
       justify-items: center;
       align-items: center;
       gap: 1rem;
+      height: 100vh;
     }
 
 
 
     @media (min-width: 992px) {
-      .image_section {
+      .apod_title{
+        font-size: 3rem;
       }
     }
   </style>

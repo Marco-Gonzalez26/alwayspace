@@ -3,6 +3,7 @@ type ApodImage = {
   urlImg: string
   date: string
   explanation: string
+  author: string
 }
 
 export const getApodImage = async (): Promise<ApodImage | null> => {
@@ -13,12 +14,12 @@ export const getApodImage = async (): Promise<ApodImage | null> => {
   )
   const data = await res.json()
 
-  const Apod: ApodImage = {
+  return {
     date: data.date,
     title: data.title,
     explanation: data.explanation,
-    urlImg: data.hdurl
+    urlImg: data.hdurl,
+    author: data.copyright
   }
-  return Apod
 }
 getApodImage()
