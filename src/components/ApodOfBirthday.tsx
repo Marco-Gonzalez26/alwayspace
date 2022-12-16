@@ -20,7 +20,7 @@ export const ApodDayOfBirth = () => {
     imgUrl: ''
   })
 
-  const [loading, setLoading] = useState<ApodOfBirth['loading']>(true)
+  const [loading, setLoading] = useState<ApodOfBirth['loading']>(false)
   const dayRef = useRef(null)
   const monthRef = useRef(null)
   const yearRef = useRef(null)

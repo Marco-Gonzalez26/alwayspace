@@ -2,6 +2,7 @@
   font-size: 2rem;
   color: #fff;
   text-align: center;
+  margin-top: 1rem;
 }
 .apod-of-birth_selection {
   display: flex;
@@ -42,8 +43,8 @@ select > option {
   border: 1px solid #000;
 }
 
-.apodOfBirth_link > img{
-  max-width: 40rem;
+.apodOfBirth_link > img {
+  width: 100%;
 }
 
 .apodOfBirth_link {
@@ -53,9 +54,10 @@ select > option {
   text-align: center;
   display: grid;
   place-items: center;
+  max-width: 20rem;
 }
 
-.image_container{
+.image_container {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -63,9 +65,9 @@ select > option {
   justify-content: center;
 }
 
-.loader{
+.loader {
   position: absolute;
-  top: 5rem
+  top: 5rem;
 }
 @media (min-width: 992px) {
   .apod-of-birth_title {
