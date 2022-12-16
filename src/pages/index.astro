@@ -14,7 +14,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
 
 <Layout title='Alwayspace | Watch NASA photos'>
   <main>
-    <section>
+    <section class='main_container'>
       <h1>Explore the <span class='text-gradient'>NASA</span> photos!</h1>
       <img src={Astronaut} alt='astronaut' class='astronaut' />
       <div class='nav_bar'>
@@ -40,7 +40,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
         </div>
       </a>
     </ApodLayout>
-    <section class="apod-of-birth_container">
+    <section class='apod-of-birth_container'>
       <ApodDayOfBirth client:load />
     </section>
   </main>
@@ -51,6 +51,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     margin: 1rem;
     padding: 1rem;
     max-width: 80rem;
+    min-height: 100vh;
   }
 
   .apod_div {
@@ -86,7 +87,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
   }
 
   .apod-of-birth_container {
-    min-height: 100vh;
+    max-height: 135vh;
   }
   h1 {
     font-size: 2rem;
@@ -100,12 +101,15 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     h1 {
       font-size: 3.5rem;
     }
-    section {
-    min-height: 100vh;
+    .main_container {
+      min-height: 100vh;
+    }
+    .apod-of-birth_container {
+      min-height: 100vh;
     }
   }
 
-  section {
+  .main_container {
     height: 80vh;
     display: flex;
     flex-direction: column;
