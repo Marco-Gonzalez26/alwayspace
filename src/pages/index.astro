@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Card from '../components/Card.astro'
 import Astronaut from '../assets/astronaut.svg'
-import { getApodImage } from 'scripts/getNasaAPOD'
+
 import ApodLayout from 'layouts/ApodLayout.astro'
+
+import { getApodImage } from 'scripts/getNasaAPOD'
+import { ApodDayOfBirth } from '../components/ApodOfBirthday.jsx'
 
 const { date, explanation, title, urlImg, author } = await getApodImage().then(
   (res) => res
@@ -20,7 +22,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
           >NASA API</a
         >
         <a href='#apod'>Photo of the day</a>
-        <a>Astronomical photo of you date of birth</a>
+        <a href='#apod-of-birth'>Astronomical photo of you date of birth</a>
       </div>
     </section>
     <ApodLayout>
@@ -38,6 +40,9 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
         </div>
       </a>
     </ApodLayout>
+    <section>
+      <ApodDayOfBirth client:load />
+    </section>
   </main>
 </Layout>
 
@@ -79,6 +84,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     transition: 1s ease all;
     opacity: 0;
   }
+
   h1 {
     font-size: 2rem;
     font-weight: 800;
@@ -93,9 +99,8 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     }
   }
 
-
   section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
