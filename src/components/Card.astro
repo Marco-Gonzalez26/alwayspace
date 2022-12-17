@@ -19,7 +19,7 @@ const { date, title, body, href, author } = Astro.props
     <small>{author}</small>
     <small>{date}</small>
     <p>
-      {body}
+      {body.substring(0, 300)}...
     </p>
   </a>
 </li>

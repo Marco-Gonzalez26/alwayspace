@@ -45,9 +45,9 @@ select > option {
 }
 
 .apodOfBirth_link > img {
-  max-width: 35rem;
+  max-width: 15rem;
   border-radius: 1rem;
-  aspect-ratio: 16/9;
+
 }
 
 .apodOfBirth_link {
@@ -81,7 +81,9 @@ h2 {
   .apod-of-birth_title {
     font-size: 3rem;
   }
-
+  .apodOfBirth_link > img  {
+    max-width: 35rem;
+  }
   form {
     display: flex;
     flex-direction: row;
