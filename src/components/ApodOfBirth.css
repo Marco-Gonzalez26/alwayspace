@@ -45,8 +45,9 @@ select > option {
 }
 
 .apodOfBirth_link > img {
-  width: 100%;
+  max-width: 35rem;
   border-radius: 1rem;
+  aspect-ratio: 16/9;
 }
 
 .apodOfBirth_link {
@@ -56,7 +57,9 @@ select > option {
   text-align: center;
   display: grid;
   place-items: center;
-  max-width: 30rem;
+  position: relative;
+  object-fit: contain;
+  margin-bottom: 2rem;
 }
 
 .image_container {

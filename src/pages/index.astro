@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Astronaut from '../assets/astronaut.svg'
-
+import Card from '@components/Card.astro'
 import ApodLayout from 'layouts/ApodLayout.astro'
 
 import { getApodImage } from 'scripts/getNasaAPOD'
@@ -39,6 +39,15 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
           <p>{explanation.substring(0, 300)}...</p>
         </div>
       </a>
+      <div class='apod_div_mobile'>
+        <Card
+          title={title}
+          author={author}
+          date={date}
+          body={explanation}
+          href='https://apod.nasa.gov/apod/'
+        />
+      </div>
     </ApodLayout>
     <section class='apod-of-birth_container'>
       <ApodDayOfBirth client:load />
@@ -84,9 +93,11 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     -webkit-box-shadow: -50px -50px 100px 50px rgba(0, 0, 0, 0.7) inset;
     transition: 1s ease all;
     opacity: 0;
+    display: none;
   }
 
   .apod-of-birth_container {
+    min-height: 100vh;
     max-height: 135vh;
   }
   h1 {
@@ -106,6 +117,14 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
     }
     .apod-of-birth_container {
       min-height: 100vh;
+    }
+
+    .apod_div_content {
+      display: block
+    }
+
+    .apod_div_mobile {
+      display: none
     }
   }
 

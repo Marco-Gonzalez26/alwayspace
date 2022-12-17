@@ -3,22 +3,25 @@ export interface Props {
   title: string
   body: string
   date: string
+  author: string
+  href: string
 }
 
-const { date, title, body } = Astro.props
+const { date, title, body, href, author } = Astro.props
 ---
 
 <li class='link-card'>
-  <div>
+  <a href={href}>
     <h2>
       {title}
       <span>&rarr;</span>
     </h2>
+    <small>{author}</small>
     <small>{date}</small>
     <p>
       {body}
     </p>
-  </div>
+  </a>
 </li>
 <style>
   .link-card {
@@ -34,10 +37,9 @@ const { date, title, body } = Astro.props
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
     max-width: 40rem;
-    max-height: 20rem;
   }
 
-  .link-card > div {
+  .link-card > a {
     width: 100%;
     text-decoration: none;
     line-height: 1.4;
@@ -63,5 +65,9 @@ const { date, title, body } = Astro.props
   }
   .link-card:is(:hover, :focus-within) h2 {
     color: rgb(var(--accent));
+  }
+
+  a{
+    text-decoration: none;
   }
 </style>

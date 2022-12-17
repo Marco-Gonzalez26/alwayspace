@@ -28,7 +28,7 @@ export const ApodDayOfBirth = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     setLoading(true)
-    if (yearRef.current.value.length >= 4) {
+    if (yearRef.current.value.length >= 4 && yearRef.current.value > 1995) {
       searchNasaAPODByDate(
         dayRef.current.value,
         monthRef.current.value,
@@ -117,17 +117,20 @@ export const ApodDayOfBirth = () => {
         </div>
         <Button text='Search' />
       </form>
-
-      <div className='image_container'>
-        {loading ? (
-          <img src={Loader} alt='loader' className='loader'/>
-        ) : (
-          <a href={apodOfBirth.imgUrl} download='NasaImage' target='_blank' className='apodOfBirth_link'>
+      {loading ? (
+        <img src={Loader} alt='loader' className='loader' />
+      ) : (
+        <div className='image_container'>
+          <a
+            href={apodOfBirth.imgUrl}
+            download='NasaImage'
+            target='_blank'
+            className='apodOfBirth_link'>
             <p>{apodOfBirth.title}</p>
             <img src={apodOfBirth.imgUrl} alt={apodOfBirth.title} />
           </a>
-        )}
-      </div>
+        </div>
+      )}
     </>
   )
 }
