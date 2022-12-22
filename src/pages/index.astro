@@ -50,7 +50,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
       </div>
     </ApodLayout>
     <section class='apod-of-birth_container'>
-      <ApodDayOfBirth client:load />
+      <ApodDayOfBirth client:load/>
     </section>
   </main>
 </Layout>
@@ -99,6 +99,7 @@ const { date, explanation, title, urlImg, author } = await getApodImage().then(
   .apod-of-birth_container {
     min-height: 100vh;
     max-height: 135vh;
+    position: relative;
   }
   h1 {
     font-size: 2rem;

@@ -11,7 +11,8 @@ type Apod = {
 
 interface ApodOfBirth {
   apod: Apod
-  loading: Boolean
+  loading: boolean
+  error: string
 }
 
 export const ApodDayOfBirth = () => {
@@ -21,14 +22,16 @@ export const ApodDayOfBirth = () => {
   })
 
   const [loading, setLoading] = useState<ApodOfBirth['loading']>(false)
+  const [error, setError] = useState<ApodOfBirth['error']>('')
   const dayRef = useRef(null)
   const monthRef = useRef(null)
   const yearRef = useRef(null)
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    setLoading(true)
+
     if (yearRef.current.value.length >= 4 && yearRef.current.value > 1995) {
+      setLoading(true)
       searchNasaAPODByDate(
         dayRef.current.value,
         monthRef.current.value,
@@ -36,6 +39,10 @@ export const ApodDayOfBirth = () => {
       ).then((res) => {
         setApodOfBirth(res)
         setLoading(false)
+        if (res.title) {
+          setError('')
+        }
+        setError(res?.error)
       })
     }
   }
@@ -55,7 +62,7 @@ export const ApodDayOfBirth = () => {
           <label>
             <span className='text-gradient'>Choose a day:</span>
           </label>
-          <select name='day' id='day' ref={dayRef}>
+          <select name='day' id='day' ref={dayRef} required>
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -93,7 +100,7 @@ export const ApodDayOfBirth = () => {
           <label>
             <span className='text-gradient'>Choose a month:</span>
           </label>
-          <select name='month' id='month' ref={monthRef}>
+          <select name='month' id='month' ref={monthRef} required>
             <option value='1'>january</option>
             <option value='2'>february</option>
             <option value='3'>march</option>
@@ -113,24 +120,27 @@ export const ApodDayOfBirth = () => {
           <label>
             <span className='text-gradient'>Choose a year:</span>
           </label>
-          <input placeholder='Year' name='year' ref={yearRef} />
+          <input placeholder='Year' name='year' ref={yearRef} required />
         </div>
-        <Button text='Search' />
+        <Button text='Search' loading={loading} />
       </form>
-      {loading ? (
-        <img src={Loader} alt='loader' className='loader' />
-      ) : (
-        <div className='image_container'>
-          <a
-            href={apodOfBirth.imgUrl}
-            download='NasaImage'
-            target='_blank'
-            className='apodOfBirth_link'>
-            <p>{apodOfBirth.title}</p>
-            <img src={apodOfBirth.imgUrl} alt={apodOfBirth.title} />
-          </a>
-        </div>
-      )}
+
+      <div className='image_container'>
+        {loading && <img src={Loader} alt='loader' className='loader' />}
+        {error && <h2 className='error_message'>{error}</h2>}
+        <a
+          href={apodOfBirth.imgUrl}
+          download='NasaImage'
+          className='apodOfBirth_link'
+          target='_blank'>
+          <p>{apodOfBirth.title}</p>
+          <img
+            src={apodOfBirth.imgUrl}
+            alt={apodOfBirth.title}
+            className='apodOfBirth_image'
+          />
+        </a>
+      </div>
     </>
   )
 }

@@ -6,7 +6,8 @@ export const searchNasaAPODByDate = async (day, month, year) => {
   )
   const data = await res.json()
   return {
-    title: data.title,
-    imgUrl: data.hdurl
+    title: data?.title,
+    imgUrl: data?.hdurl,
+    error: data?.msg
   }
 }

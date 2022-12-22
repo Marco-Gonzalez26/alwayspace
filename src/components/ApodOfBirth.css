@@ -29,6 +29,15 @@ input {
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   font-size: 1rem;
+  border: 2px solid transparent;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid blueviolet;
+  color: blueviolet
 }
 
 select {
@@ -36,20 +45,33 @@ select {
   border-radius: 1rem;
   text-transform: capitalize;
   font-size: 1rem;
+  border: 2px solid transparent;
 }
 
 select > option {
   backdrop-filter: blur(10px);
-  background-color: rgba(200, 200, 200, 0.5);
-  border: 1px solid #000;
+  background-color: rgb(183, 96, 255);
+  border: 2px solid blueviolet;
+  color: #fff;
+  padding: 1rem;
 }
 
-.apodOfBirth_link > img {
+select > option:hover {
+  background: rgb(183, 96, 255, 0.5);
+}
+
+.apodOfBirth_image {
   max-width: 15rem;
   border-radius: 1rem;
-
+  max-height: 30rem;
 }
-
+.error_message{
+  color:#fff;
+  font-size: 2rem;
+  text-align: center;
+  text-shadow: -5px 5px rgb(183, 96, 255, .5);
+  
+}
 .apodOfBirth_link {
   color: #fff;
   font-size: 2rem;
@@ -76,12 +98,13 @@ h2 {
 .loader {
   position: absolute;
   top: 5rem;
+  width: 7rem;
 }
 @media (min-width: 992px) {
   .apod-of-birth_title {
     font-size: 3rem;
   }
-  .apodOfBirth_link > img  {
+  .apodOfBirth_link > img {
     max-width: 35rem;
   }
   form {
@@ -90,5 +113,8 @@ h2 {
     justify-content: space-around;
     align-items: flex-end;
     gap: 2rem;
+  }
+  .error_message{
+    font-size: 3rem;
   }
 }
