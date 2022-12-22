@@ -30,6 +30,7 @@ input {
   border-radius: 1rem;
   font-size: 1rem;
   border: 2px solid transparent;
+  color: blueviolet;
 }
 
 input:focus,
@@ -37,7 +38,7 @@ select:focus {
   outline: none;
   box-shadow: none;
   border: 2px solid blueviolet;
-  color: blueviolet
+  color: blueviolet;
 }
 
 select {
@@ -46,6 +47,7 @@ select {
   text-transform: capitalize;
   font-size: 1rem;
   border: 2px solid transparent;
+  color: blueviolet;
 }
 
 select > option {
@@ -65,12 +67,11 @@ select > option:hover {
   border-radius: 1rem;
   max-height: 30rem;
 }
-.error_message{
-  color:#fff;
+.error_message {
+  color: #fff;
   font-size: 2rem;
   text-align: center;
-  text-shadow: -5px 5px rgb(183, 96, 255, .5);
-  
+  text-shadow: -5px 5px rgb(183, 96, 255, 0.5);
 }
 .apodOfBirth_link {
   color: #fff;
@@ -114,7 +115,7 @@ h2 {
     align-items: flex-end;
     gap: 2rem;
   }
-  .error_message{
+  .error_message {
     font-size: 3rem;
   }
 }
