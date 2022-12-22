@@ -32,6 +32,7 @@ export const ApodDayOfBirth = () => {
 
     if (yearRef.current.value.length >= 4 && yearRef.current.value > 1995) {
       setLoading(true)
+      setApodOfBirth({ title: '', imgUrl: '' })
       searchNasaAPODByDate(
         dayRef.current.value,
         monthRef.current.value,
